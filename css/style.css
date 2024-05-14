@@ -1,3 +1,19 @@
-body{
+/* body{
    background-image: url();
+   overflow: hidden;
+   animation-name: ;
+   animation-duration: .7s;
 }
+
+@keyframes animate{
+   0%{
+      transform: translateY(-300px);
+   }
+   100%{
+      transform: translateY(0);
+   }
+} */
+
+/* .pr-burger>img[src='images/add/cutlet.png']{
+   background-color: red;
+} */

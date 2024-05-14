@@ -111,6 +111,7 @@ section_2_div_1.style.cssText = "height: 75vh; display: flex; align-items: cente
 
 const section_2_div_1_1 = document.createElement("div");
 const section_2_div_1_2 = document.createElement("div");
+section_2_div_1_2.className = "pr-burger";
 const section_2_div_1_3 = document.createElement("div");
 
 section_2_div_1_1.style.cssText = "width: 33.33%; display: flex; align-items: center; height: 100%; ";
@@ -176,400 +177,256 @@ const vegetables = [
 
 section_2_div_2.style.cssText = "height: 25vh; width: 100%; margin: 0 auto; display: grid; grid-template-columns: repeat(8, 1fr); grid-gap: 20px;";
 
-const card_pr_1 = document.createElement("div");
+let style = (cssStyle) => {
+    let head = document.head;
+    let style = document.createElement("style");
+    style.appendChild(document.createTextNode(cssStyle));
+    head.appendChild(style);
+}
+
+for(let i = 0; srcs.length > i; i++){
+    // Create Elements
+    let cards = document.createElement("div");
+    cards.className = "cards";
+
+    let pr_imgs = document.createElement("div");
+    pr_imgs.className = "pr_imgs";
+
+    let img = document.createElement('img');
+    img.src = srcs[i];
+    img.className = "img";
+
+    let h4 = document.createElement("h4");
+    h4.innerText = vegetables[i];
+    h4.className = "h4";
+
+    let pr_spans = document.createElement("div");
+    pr_spans.className = "pr_spans";
+
+    let plus = document.createElement("span");
+    plus.innerText = "+";
+
+    let count = document.createElement("span");
+    count.innerText = "0";
+
+    let minus = document.createElement('span');
+    minus.innerText = "-";
+
+    // append childs
+    pr_imgs.appendChild(img);
+    pr_spans.append(plus, count, minus);
+
+    cards.append(pr_imgs, h4, pr_spans);
+
+    section_2_div_2.appendChild(cards);
+}
+
+style(`
+.cards{
+    width: 100px;
+    overflow: hidden;
+}
+.pr_imgs{
+    width: 100%;
+    height: 50px;
+}
+.pr_imgs img{
+    width: 100%;
+}
+
+.cards > h4{
+    text-align: center;
+}
+
+.pr_spans{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pr_spans span:nth-child(odd){
+    cursor: pointer;
+}
 
 
+`)
 
-const card_1_pr_img = document.createElement('div');
-card_1_pr_img.style.cssText = "height: 50px;";
+let spans_add_remove = document.querySelectorAll(".pr_spans span:nth-child(odd)");
+let spans_count = document.querySelectorAll(".pr_spans span:nth-child(2)");
 
-const card_img_1 = document.createElement('img');
-card_img_1.src = `${srcs[0]}`;
-card_img_1.style.cssText= "width:100%";
-card_1_pr_img.appendChild(card_img_1)
 
-const card_1_h4 = document.createElement('h4');
-card_1_h4.innerText = `${vegetables[0]}`;
-card_1_h4.style.cssText = "text-align: center;";
+let burger_images = document.querySelectorAll(".pr-burger img");
 
-const card_1_div = document.createElement('div');
-card_1_div.style.cssText = "display: flex; align-items: center; justify-content: space-between; font-size: 20px; padding: 15px; color: #1F2939;";
-card_pr_1.append(card_1_pr_img, card_1_h4, card_1_div);
-
+// مبتشتغلش لما بتكون جوة ال ادد
 let i = 0;
-const card_span_1 = document.createElement("span");
-card_span_1.innerText = "-";
-card_span_1.style.cssText = "cursor: pointer;";
-card_span_1.addEventListener("click", () => {
-
-})
-
-
-const card_span_2 = document.createElement("span");
-card_span_2.textContent = i;
-
-card_span_1.addEventListener("click", () => {
-    if (i > 0) {
-        card_span_2.innerText = --i;
-    }
-    const remove_img = section_2_div_1_2.querySelectorAll("section div:first-child div:nth-child(2) img");
-    console.log(remove_img);
-
-    for (let i = 0; i < remove_img.length; i++) {
-        if(remove_img[i].src == "http://127.0.0.1:5500/images/add/cutlet.png"){
-            console.log(remove_img[i].src);
-            remove_img[i].remove();
-            break
-        }
+spans_add_remove[0].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    if(i < 3 ){
+        spans_count[0].innerText = ++i;
+        let img = document.createElement("img");
+        img.src = srcs[0];
+        img.className = vegetables[0];
+        pr_burger = document.querySelector(".pr-burger");
+        pr_burger.appendChild(img);
 
     }
-})
-
-const card_span_3 = document.createElement("span");
-card_span_3.innerText = "+";
-card_span_3.style.cssText = "cursor: pointer;";
-
-const add_cutlet = document.createElement("img");
-add_cutlet.src = "images/add/cutlet.png";
-add_cutlet.style.cssText = "margin-bottom: -35px; position: relative; z-index: 2;"
-
-card_span_3.addEventListener("click", () => {
-    if (i < 3) {
-        ++i;
-        card_span_2.innerText = i;
-        section_2_div_1_2.innerHTML += `
-            <img src="images/add/cutlet.png" class="cutlet-img"/>
-        `;
-        console.log(section_2_div_1_2);
-    }
+    console.log(burger_images);
     
-    const cutlet_img = document.querySelectorAll('.cutlet-img');
-    for (let i = 0; i < cutlet_img.length; i++) {
-        cutlet_img[i].style.cssText = "margin-bottom: -40px; position: relative; z-index: 2;";
+    
+})
+
+
+spans_add_remove[1].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    let remove_img = document.querySelectorAll(".pr-burger>img[src='images/add/cutlet.png']");
+
+    if(i > 0 ){
+        spans_count[0].innerText = --i;
+        remove_img[0].remove();        
     }
 })
 
 
 
-card_1_div.append(card_span_1, card_span_2, card_span_3);
 
 
 
-////
+style(`
 
+.pr-burger img{
+    position: relative;
+    z-index: 2;
+    animation-name: animate;
+    animation-duration: .7s;
+}
+.pr-burger .Cutlet{
+    margin-bottom: -35px;
+}
+.pr-burger .Mayo{
+    margin-bottom: -50px;
+}
+.pr-burger .Onion{
+    margin-bottom: -50px;
+}
+.pr-burger .Tomato{
+    margin-bottom: -50px;
+}
+.pr-burger .Cucumber{
+    margin-bottom: -50px;
+}
+.pr-burger .Cheese{
+    margin-bottom: -50px;
+}
+.pr-burger .Salad{
+    margin-bottom: -50px;
+}
+.pr-burger .Bun{
+    margin-bottom: -50px;
+}
 
-const card_pr_2 = document.createElement("div");
+@keyframes animate{
+    0%{
+       transform: translateY(-300px);
+    }
+    100%{
+       transform: translateY(0);
+    }
+ }
 
-const card_2_pr_img = document.createElement('div');
-card_2_pr_img.style.cssText = "height: 50px;";
+`)
 
-const card_img_2 = document.createElement('img');
-card_img_2.src = `${srcs[1]}`;
-card_img_2.style.cssText= "width:100%";
-card_2_pr_img.appendChild(card_img_2)
 
-const card_2_h4 = document.createElement('h4');
-card_2_h4.innerText = `${vegetables[1]}`;
-card_2_h4.style.cssText = "text-align: center;";
 
-const card_2_div = document.createElement('div');
-card_2_div.style.cssText = "display: flex; align-items: center; justify-content: space-between; font-size: 20px; padding: 15px; color: #1F2939;";
-card_pr_2.append(card_2_pr_img, card_2_h4, card_2_div);
 
-const card_2_span_1 = document.createElement("span");
-card_2_span_1.innerText = "-";
-card_2_span_1.style.cssText = "cursor: pointer;";
-card_2_span_1.addEventListener("click", () => {
-    section_2_div_1_2.removeChild(add_mayo)
-})
 
-const card_2_span_2 = document.createElement("span");
-card_2_span_2.innerText = 0;
 
-const card_2_span_3 = document.createElement("span");
-card_2_span_3.innerText = "+";
-card_2_span_3.style.cssText = "cursor: pointer;";
 
-const add_mayo = document.createElement("img");
-add_mayo.src = "images/add/mayo.png";
-add_mayo.style.cssText = "margin-bottom: -45px; position: relative; z-index: 2;"
 
-card_2_span_3.addEventListener("click", () => {
-    section_2_div_1_2.appendChild(add_mayo);
-    card_2_span_2 = +card_2_span_2++;
-})
-card_2_div.append(card_2_span_1, card_2_span_2, card_2_span_3)
 
-/////
 
-const card_pr_3 = document.createElement("div");
 
-const card_3_pr_img = document.createElement('div');
-card_3_pr_img.style.cssText = "height: 50px;";
 
-const card_img_3 = document.createElement('img');
-card_img_3.src = `${srcs[2]}`;
-card_img_3.style.cssText= "width:100%";
-card_3_pr_img.appendChild(card_img_3)
 
-const card_3_h4 = document.createElement('h4');
-card_3_h4.innerText = `${vegetables[2]}`;
-card_3_h4.style.cssText = "text-align: center;";
 
-const card_3_div = document.createElement('div');
-card_3_div.style.cssText = "display: flex; align-items: center; justify-content: space-between; font-size: 20px; padding: 15px; color: #1F2939;";
-card_pr_3.append(card_3_pr_img, card_3_h4, card_3_div);
 
-const card_3_span_1 = document.createElement("span");
-card_3_span_1.innerText = "-";
-card_3_span_1.style.cssText = "cursor: pointer;";
-card_3_span_1.addEventListener("click", () => {
-    section_2_div_1_2.removeChild(add_onion);
-})
 
-const card_3_span_2 = document.createElement("span");
-card_3_span_2.innerText = 0;
 
-const card_3_span_3 = document.createElement("span");
-card_3_span_3.innerText = "+";
-card_3_span_3.style.cssText = "cursor: pointer;";
+// const card_pr_1 = document.createElement("div");
 
-const add_onion = document.createElement("img");
-add_onion.src = "images/add/onion.png";
-add_onion.style.cssText = "margin-bottom: -35px; position: relative; z-index: 2;";
 
-card_3_span_3.addEventListener("click", () => {
-    section_2_div_1_2.appendChild(add_onion);
-    card_3_span_2 = +card_3_span_2++;
-})
-card_3_div.append(card_3_span_1, card_3_span_2, card_3_span_3);
 
-/////
+// const card_1_pr_img = document.createElement('div');
+// card_1_pr_img.style.cssText = "height: 50px;";
 
+// const card_img_1 = document.createElement('img');
+// card_img_1.src = `${srcs[0]}`;
+// card_img_1.style.cssText= "width:100%";
+// card_1_pr_img.appendChild(card_img_1)
 
-const card_pr_4 = document.createElement("div");
+// const card_1_h4 = document.createElement('h4');
+// card_1_h4.innerText = `${vegetables[0]}`;
+// card_1_h4.style.cssText = "text-align: center;";
 
-const card_4_pr_img = document.createElement('div');
-card_4_pr_img.style.cssText = "height: 50px;";
+// const card_1_div = document.createElement('div');
+// card_1_div.style.cssText = "display: flex; align-items: center; justify-content: space-between; font-size: 20px; padding: 15px; color: #1F2939;";
+// card_pr_1.append(card_1_pr_img, card_1_h4, card_1_div);
 
-const card_img_4 = document.createElement('img');
-card_img_4.src = `${srcs[3]}`;
-card_img_4.style.cssText= "width:100%";
-card_4_pr_img.appendChild(card_img_4)
+// let i = 0;
+// const card_span_1 = document.createElement("span");
+// card_span_1.innerText = "-";
+// card_span_1.style.cssText = "cursor: pointer;";
 
-const card_4_h4 = document.createElement('h4');
-card_4_h4.innerText = `${vegetables[3]}`;
-card_4_h4.style.cssText = "text-align: center;";
+// const card_span_2 = document.createElement("span");
+// card_span_2.textContent = i;
 
-const card_4_div = document.createElement('div');
-card_4_div.style.cssText = "display: flex; align-items: center; justify-content: space-between; font-size: 20px; padding: 15px; color: #1F2939;";
-card_pr_4.append(card_4_pr_img, card_4_h4, card_4_div);
-
-const card_4_span_1 = document.createElement("span");
-card_4_span_1.innerText = "-";
-card_4_span_1.style.cssText = "cursor: pointer;";
-card_4_span_1.addEventListener("click", () => {
-    section_2_div_1_2.removeChild(add_tomato);
-})
-
-const card_4_span_2 = document.createElement("span");
-card_4_span_2.innerText = 0;
-
-const card_4_span_3 = document.createElement("span");
-card_4_span_3.innerText = "+";
-card_4_span_3.style.cssText = "cursor: pointer;";
-
-const add_tomato = document.createElement("img");
-add_tomato.src = "images/add/tomato.png";
-add_tomato.style.cssText = "margin-bottom: -35px; position: relative; z-index: 2;"
-
-card_4_span_3.addEventListener("click", () => {
-    section_2_div_1_2.appendChild(add_tomato);
-    card_4_span_2 = +card_4_span_2++;
-})
-card_4_div.append(card_4_span_1, card_4_span_2, card_4_span_3);
-
-
-///
-
-const card_pr_5 = document.createElement("div");
-
-const card_5_pr_img = document.createElement('div');
-card_5_pr_img.style.cssText = "height: 50px;";
-
-const card_img_5 = document.createElement('img');
-card_img_5.src = `${srcs[4]}`;
-card_img_5.style.cssText= "width:100%";
-card_5_pr_img.appendChild(card_img_5)
-
-const card_5_h4 = document.createElement('h4');
-card_5_h4.innerText = `${vegetables[4]}`;
-card_5_h4.style.cssText = "text-align: center;";
-
-const card_5_div = document.createElement('div');
-card_5_div.style.cssText = "display: flex; align-items: center; justify-content: space-between; font-size: 20px; padding: 15px; color: #1F2939;";
-card_pr_5.append(card_5_pr_img, card_5_h4, card_5_div);
-
-const card_5_span_1 = document.createElement("span");
-card_5_span_1.innerText = "-";
-card_5_span_1.style.cssText = "cursor: pointer;";
-card_5_span_1.addEventListener("click", () => {
-    section_2_div_1_2.removeChild(add_cucumber);
-})
-
-const card_5_span_2 = document.createElement("span");
-card_5_span_2.innerText = 0;
-
-const card_5_span_3 = document.createElement("span");
-card_5_span_3.innerText = "+";
-card_5_span_3.style.cssText = "cursor: pointer;";
-
-const add_cucumber = document.createElement("img");
-add_cucumber.src = "images/add/cucumber.png";
-add_cucumber.style.cssText = "margin-bottom: -35px; position: relative; z-index: 2;"
-
-card_5_span_3.addEventListener("click", () => {
-    section_2_div_1_2.appendChild(add_cucumber);
-    card_5_span_2 = +card_5_span_2++;
-})
-card_5_div.append(card_5_span_1, card_5_span_2, card_5_span_3);
-
-///
-
-
-const card_pr_6 = document.createElement("div");
-
-const card_6_pr_img = document.createElement('div');
-card_6_pr_img.style.cssText = "height: 50px;";
-
-const card_img_6 = document.createElement('img');
-card_img_6.src = `${srcs[5]}`;
-card_img_6.style.cssText= "width:100%";
-card_6_pr_img.appendChild(card_img_6)
-
-const card_6_h4 = document.createElement('h4');
-card_6_h4.innerText = `${vegetables[5]}`;
-card_6_h4.style.cssText = "text-align: center;";
-
-const card_6_div = document.createElement('div');
-card_6_div.style.cssText = "display: flex; align-items: center; justify-content: space-between; font-size: 20px; padding: 15px; color: #1F2939;";
-card_pr_6.append(card_6_pr_img, card_6_h4, card_6_div);
-
-const card_6_span_1 = document.createElement("span");
-card_6_span_1.innerText = "-";
-card_6_span_1.style.cssText = "cursor: pointer;";
-card_6_span_1.addEventListener("click", () => {
-    section_2_div_1_2.removeChild(add_cheese);
-})
-
-const card_6_span_2 = document.createElement("span");
-card_6_span_2.innerText = 0;
-
-const card_6_span_3 = document.createElement("span");
-card_6_span_3.innerText = "+";
-card_6_span_3.style.cssText = "cursor: pointer;";
-
-const add_cheese = document.createElement("img");
-add_cheese.src = "images/add/cheese.png";
-add_cheese.style.cssText = "margin-bottom: -45px; position: relative; z-index: 2;"
-
-card_6_span_3.addEventListener("click", () => {
-    section_2_div_1_2.appendChild(add_cheese);
-    card_6_span_2 = +card_6_span_2++;
-})
-card_6_div.append(card_6_span_1, card_6_span_2, card_6_span_3);
-
-////
-
-
-const card_pr_7 = document.createElement("div");
-
-const card_7_pr_img = document.createElement('div');
-card_7_pr_img.style.cssText = "height: 50px;";
-
-const card_img_7 = document.createElement('img');
-card_img_7.src = `${srcs[6]}`;
-card_img_7.style.cssText= "width:100%";
-card_7_pr_img.appendChild(card_img_7)
-
-const card_7_h4 = document.createElement('h4');
-card_7_h4.innerText = `${vegetables[6]}`;
-card_7_h4.style.cssText = "text-align: center;";
-
-const card_7_div = document.createElement('div');
-card_7_div.style.cssText = "display: flex; align-items: center; justify-content: space-between; font-size: 20px; padding: 15px; color: #1F2939;";
-card_pr_7.append(card_7_pr_img, card_7_h4, card_7_div);
-
-const card_7_span_1 = document.createElement("span");
-card_7_span_1.innerText = "-";
-card_7_span_1.style.cssText = "cursor: pointer;";
-card_7_span_1.addEventListener("click", () => {
-    section_2_div_1_2.removeChild(add_salad);
-})
-
-const card_7_span_2 = document.createElement("span");
-card_7_span_2.innerText = 0;
-
-const card_7_span_3 = document.createElement("span");
-card_7_span_3.innerText = "+";
-card_7_span_3.style.cssText = "cursor: pointer;";
-
-const add_salad = document.createElement("img");
-add_salad.src = "images/add/salad.png";
-add_salad.style.cssText = "margin-bottom: -40px; position: relative; z-index: 2;"
-
-card_7_span_3.addEventListener("click", () => {
-    section_2_div_1_2.appendChild(add_salad);
-    card_7_span_2 = +card_6_span_2++;
-})
-card_7_div.append(card_7_span_1, card_7_span_2, card_7_span_3);
-
-
-///////
-
-
-const card_pr_8 = document.createElement("div");
-
-const card_8_pr_img = document.createElement('div');
-card_8_pr_img.style.cssText = "height: 50px;";
-
-const card_img_8 = document.createElement('img');
-card_img_8.src = `${srcs[7]}`;
-card_img_8.style.cssText= "width:100%";
-card_8_pr_img.appendChild(card_img_8)
-
-const card_8_h4 = document.createElement('h4');
-card_8_h4.innerText = `${vegetables[7]}`;
-card_8_h4.style.cssText = "text-align: center;";
-
-const card_8_div = document.createElement('div');
-card_8_div.style.cssText = "display: flex; align-items: center; justify-content: space-between; font-size: 20px; padding: 15px; color: #1F2939;";
-card_pr_8.append(card_8_pr_img, card_8_h4, card_8_div);
-
-const card_8_span_1 = document.createElement("span");
-card_8_span_1.innerText = "-";
-card_8_span_1.style.cssText = "cursor: pointer;";
-card_8_span_1.addEventListener("click", () => {
-    section_2_div_1_2.removeChild(add_bun_middle);
-})
-
-const card_8_span_2 = document.createElement("span");
-card_8_span_2.innerText = 0;
-
-const card_8_span_3 = document.createElement("span");
-card_8_span_3.innerText = "+";
-card_8_span_3.style.cssText = "cursor: pointer;";
-
-const add_bun_middle = document.createElement("img");
-add_bun_middle.src = "images/add/bun_middle.png";
-add_bun_middle.style.cssText = "margin-bottom: -60px; position: relative; z-index: 2;"
-
-card_8_span_3.addEventListener("click", () => {
-    section_2_div_1_2.appendChild(add_bun_middle);
-    card_8_span_2 = +card_8_span_2++;
-})
-card_8_div.append(card_8_span_1, card_8_span_2, card_8_span_3);
-
-
-section_2_div_2.append(card_pr_1, card_pr_2, card_pr_3, card_pr_4, card_pr_5, card_pr_6, card_pr_7, card_pr_8);
+// card_span_1.addEventListener("click", () => {
+//     if (i > 0) {
+//         card_span_2.innerText = --i;
+//     }
+//     const remove_img = section_2_div_1_2.querySelectorAll("section div:first-child div:nth-child(2) img");
+//     for (let i = 0; i < remove_img.length; i++) {
+//         if(remove_img[i].src == "http://127.0.0.1:5500/images/add/cutlet.png"){
+//             remove_img[i].remove();
+//             break;
+//         }
+//     }
+// })
+
+// const card_span_3 = document.createElement("span");
+// card_span_3.innerText = "+";
+// card_span_3.style.cssText = "cursor: pointer;";
+
+// // const add_cutlet = document.createElement("img");
+// // add_cutlet.src = "images/add/cutlet.png";
+// // add_cutlet.style.cssText = "margin-bottom: -35px; position: relative; z-index: 2;"
+
+// card_span_3.addEventListener("mousedown", () => {
+//     if (i < 3) {
+//         ++i;
+//         card_span_2.innerText = i;
+//         section_2_div_1_2.innerHTML += `
+//             <img src="images/add/cutlet.png" class="cutlet-img"/>
+//         `;
+//     }
+    
+//     const cutlet_img = document.querySelectorAll('.cutlet-img');
+//     for (let i = 0; i < cutlet_img.length; i++) {
+//         cutlet_img[i].style.cssText = "margin-bottom: -40px; position: relative; top: -300px; z-index: 2; transition: .7s;";
+
+//         card_span_3.addEventListener("mouseup", () => {
+//             cutlet_img[i].style.cssText = "margin-bottom: -40px; position: relative; top: 0; z-index: 2; transition: .7s;";
+//         })
+        
+//     }
+    
+// })
+
+// card_1_div.append(card_span_1, card_span_2, card_span_3);
+
+// ////
+
+
+
+
+// section_2_div_2.append(card_pr_1, card_pr_2, card_pr_3, card_pr_4, card_pr_5, card_pr_6, card_pr_7, card_pr_8);
 
