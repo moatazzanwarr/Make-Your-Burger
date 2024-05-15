@@ -282,9 +282,183 @@ spans_add_remove[1].addEventListener("click", () => {
 
     if(i > 0 ){
         spans_count[0].innerText = --i;
-        remove_img[0].remove();        
+        remove_img[0].remove();
     }
 })
+
+let i_2 = 0;
+spans_add_remove[2].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    if(i_2 < 3 ){
+        spans_count[1].innerText = ++i_2;
+        let img = document.createElement("img");
+        img.src = srcs[1];
+        img.className = vegetables[1];
+        pr_burger = document.querySelector(".pr-burger");
+        pr_burger.appendChild(img);
+
+    }
+    console.log(burger_images);
+    
+    
+})
+
+
+spans_add_remove[3].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    let remove_img = document.querySelectorAll(".pr-burger>img[src='images/add/mayo.png']");
+
+    if(i_2 > 0 ){
+        spans_count[1].innerText = --i_2;
+        remove_img[0].remove();
+
+    }
+})
+
+let i_3 = 0;
+spans_add_remove[4].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    if(i_3 < 3){
+        spans_count[2].innerText = ++i_3;
+        let img = document.createElement("img");
+        img.src = srcs[2];
+        img.className = vegetables[2];
+        pr_burger = document.querySelector(".pr-burger")
+        pr_burger.appendChild(img);
+    }
+    
+})
+
+spans_add_remove[5].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    let remove_img = document.querySelectorAll(".pr-burger>img[src='images/add/onion.png']");
+
+    if(i_3 > 0){
+        spans_count[2].innerText = --i_3;
+        remove_img[0].remove()
+    }
+})
+
+let i_4 = 0;
+spans_add_remove[6].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    if(i_4 < 3){
+        spans_count[3].innerText = ++i_4;
+        let img = document.createElement("img");
+        img.src = srcs[3];
+        img.className = vegetables[3];
+        pr_burger = document.querySelector(".pr-burger")
+        pr_burger.appendChild(img);
+    }
+    
+})
+
+spans_add_remove[7].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    let remove_img = document.querySelectorAll(".pr-burger>img[src='images/add/tomato.png']");
+
+    if(i_4 > 0){
+        spans_count[3].innerText = --i_4;
+        remove_img[0].remove()
+    }
+})
+
+let i_5 = 0;
+spans_add_remove[8].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    if(i_5 < 3){
+        spans_count[4].innerText = ++i_5;
+        let img = document.createElement("img");
+        img.src = srcs[4];
+        img.className = vegetables[4];
+        pr_burger = document.querySelector(".pr-burger")
+        pr_burger.appendChild(img);
+    }
+    
+})
+
+spans_add_remove[9].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    let remove_img = document.querySelectorAll(".pr-burger>img[src='images/add/cucumber.png']");
+
+    if(i_5 > 0){
+        spans_count[4].innerText = --i_5;
+        remove_img[0].remove()
+    }
+})
+
+let i_6 = 0;
+spans_add_remove[10].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    if(i_6 < 3){
+        spans_count[5].innerText = ++i_6;
+        let img = document.createElement("img");
+        img.src = srcs[5];
+        img.className = vegetables[5];
+        pr_burger = document.querySelector(".pr-burger")
+        pr_burger.appendChild(img);
+    }
+    
+})
+
+spans_add_remove[11].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    let remove_img = document.querySelectorAll(".pr-burger>img[src='images/add/cheese.png']");
+
+    if(i_6 > 0){
+        spans_count[5].innerText = --i_6;
+        remove_img[0].remove()
+    }
+})
+
+let i_7 = 0;
+spans_add_remove[12].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    if(i_7 < 3){
+        spans_count[6].innerText = ++i_7;
+        let img = document.createElement("img");
+        img.src = srcs[6];
+        img.className = vegetables[6];
+        pr_burger = document.querySelector(".pr-burger")
+        pr_burger.appendChild(img);
+    }
+    
+})
+
+spans_add_remove[13].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    let remove_img = document.querySelectorAll(".pr-burger>img[src='images/add/salad.png']");
+
+    if(i_7 > 0){
+        spans_count[6].innerText = --i_7;
+        remove_img[0].remove()
+    }
+})
+
+let i_8 = 0;
+spans_add_remove[14].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    if(i_8 < 3){
+        spans_count[7].innerText = ++i_8;
+        let img = document.createElement("img");
+        img.src = srcs[7];
+        img.className = vegetables[7];
+        pr_burger = document.querySelector(".pr-burger")
+        pr_burger.appendChild(img);
+    }
+    
+})
+
+spans_add_remove[15].addEventListener("click", () => {
+    burger_images = document.querySelectorAll(".pr-burger img");
+    let remove_img = document.querySelectorAll(".pr-burger>img[src='images/add/bun_middle.png']");
+
+    if(i_8 > 0){
+        spans_count[7].innerText = --i_8;
+        remove_img[0].remove()
+    }
+})
+
 
 
 
@@ -306,16 +480,16 @@ style(`
     margin-bottom: -50px;
 }
 .pr-burger .Onion{
-    margin-bottom: -50px;
+    margin-bottom: -35px;
 }
 .pr-burger .Tomato{
-    margin-bottom: -50px;
+    margin-bottom: -40px;
 }
 .pr-burger .Cucumber{
-    margin-bottom: -50px;
+    margin-bottom: -35px;
 }
 .pr-burger .Cheese{
-    margin-bottom: -50px;
+    margin-bottom: -40px;
 }
 .pr-burger .Salad{
     margin-bottom: -50px;
